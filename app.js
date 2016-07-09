@@ -1,10 +1,7 @@
 'use strict';
 
-function productsAdd() {
-    // first check if a tbody tag exists, add one if not
-    if ($("#productTable tbody").length == 0) {
-        $("#productTable").append("<tbody></tbody>");
-    }
+function LoadProducts() {
+    CheckForTBody();
 
     // append product to the table
     AppendProductToTable(
@@ -34,6 +31,46 @@ function AppendProductToTable(rowHTML) {
     $("#productTable tbody").append(rowHTML);
 }
 
+function CheckForTBody() {
+    // first check if a tbody tag exists, add one if not
+    if ($("#productTable tbody").length == 0) {
+        $("#productTable").append("<tbody></tbody>");
+    }
+}
+
 $(document).ready(function () {
-    productsAdd();
+    LoadProducts();
+    $("#productPanel").hide();
 });
+
+function addProduct() {
+    $("#productPanel").show();
+    $("#updateButton").hide();
+}
+
+function cancelUpdate() {
+    $("#productPanel").hide();
+    $("#updateButton").show();
+}
+
+function ClearForm() {
+    $("#productname").val("");
+    $("#introdate").val("");
+    $("#url").val("");
+}
+
+function productUpdate() {
+    CheckForTBody();
+
+    AppendProductToTable(
+        "<tr>" +
+        "<td>" + $("#productname").val() + "</td>" +
+        "<td>" + $("#introdate").val() + "</td>" +
+        "<td>" + $("#url").val() + "</td>" +
+      "</tr>"
+    );
+
+    ClearForm();
+
+    cancelUpdate();
+}

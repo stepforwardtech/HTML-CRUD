@@ -32,6 +32,40 @@
                             </tr>
                         </thead>
                     </table>
+                    <div>
+                        <button type="button" id="updateButton" class="btn btn-primary" onclick="addProduct();">Add a Product</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="panel panel-primary" id="productPanel">
+                        <div class="panel-heading">
+                            Product Information
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label for="productname">Product Name</label>
+                                <input type="text" class="form-control" placeholder="Extending Bootstrap with CSS, JavaScript and jQuery" id="productname" />
+                            </div>
+                            <div class="form-group">
+                                <label for="introdate">Introduction Date</label>
+                                <input type="text" class="form-control" placeholder="6/11/2015" id="introdate" />
+                            </div>
+                            <div class="form-group">
+                                <label for="url">URL</label>
+                                <input type="text" class="form-control" placeholder="www.pluralsight.com" id="url" />
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <button type="button" id="updateButton" class="btn btn-primary" onclick="productUpdate();">Save</button>
+                                    <button type="button" id="cancelButton" class="btn btn-primary" onclick="cancelUpdate();">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
