@@ -1,0 +1,23 @@
+{
+  "name": "html-crud",
+  "version": "1.0.0",
+  "description": "Examples of html crud",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stepforwardtech/HTML-CRUD.git"
+  },
+  "keywords": [
+    "html",
+    "crud"
+  ],
+  "author": "Step Forward Tech",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stepforwardtech/HTML-CRUD/issues"
+  },
+  "homepage": "https://github.com/stepforwardtech/HTML-CRUD#readme"
+}
