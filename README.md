@@ -1,2 +1,2 @@
 # HTML-CRUD
-Example of HTML CRUD
+Examples of HTML CRUD
