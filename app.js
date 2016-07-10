@@ -5,30 +5,36 @@ function LoadProducts() {
 
     // append product to the table
     AppendProductToTable(
-        "<tr>" +
-            "<td>My First Video</td>" +
+         "<td>My First Video</td>" +
             "<td>6/11/2015</td>" +
-            "<td>www.pluralsight.com</td>" +
-        "</tr>"
+            "<td>www.pluralsight.com</td>"
     );
     AppendProductToTable(
-        "<tr>" +
         "<td>Extending Bootstrap with CSS, JavaScript and jQuery</td>" +
         "<td>6/11/2015</td>" +
-        "<td>http://bit.ly/1SNzc0i</td>" +
-      "</tr>"
+        "<td>http://bit.ly/1SNzc0i</td>"
     );
     AppendProductToTable(
-        "<tr>" +
+        
         "<td>Build your own Bootstrap Business Application Template in MVC</td>" +
         "<td>1/29/2015</td>" +
-        "<td>http://bit.ly/1I8ZqZg</td>" +
-      "</tr>"
+        "<td>http://bit.ly/1I8ZqZg</td>"
+     
     );
 }
 
 function AppendProductToTable(rowHTML) {
-    $("#productTable tbody").append(rowHTML);
+    $("#productTable tbody").append(
+        "<tr>" +
+        rowHTML +
+        "<td>" +
+        "<button type='button'" +
+            "onclick='productDelete(this);' " +
+            "class='btn btn-default'>" +
+            "<span class='glyphicon glyphicon-remove' />" +
+            "</td>" +
+         "</tr>"
+    );
 }
 
 function CheckForTBody() {
@@ -63,14 +69,16 @@ function productUpdate() {
     CheckForTBody();
 
     AppendProductToTable(
-        "<tr>" +
         "<td>" + $("#productname").val() + "</td>" +
         "<td>" + $("#introdate").val() + "</td>" +
-        "<td>" + $("#url").val() + "</td>" +
-      "</tr>"
+        "<td>" + $("#url").val() + "</td>"
     );
 
     ClearForm();
 
     cancelUpdate();
+}
+
+function productDelete(ctl) {
+    $(ctl).parents("tr").remove();
 }
