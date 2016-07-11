@@ -1,5 +1,7 @@
 'use strict';
 
+var _productRow = null;
+
 function LoadProducts() {
     CheckForTBody();
 
@@ -25,16 +27,28 @@ function LoadProducts() {
 
 function AppendProductToTable(rowHTML) {
     $("#productTable tbody").append(
-        "<tr>" +
+        productBuildTableRow(rowHTML)
+    );
+}
+
+function productBuildTableRow(rowHTML) {
+    return "<tr>" +
+        "<td>" +
+        "<button type='button'" +
+            "onclick='productDisplay(this);' " +
+            "class='btn btn-default'>" +
+            "<span class='glyphicon glyphicon-edit' />" +
+            "</button" +
+            "</td>" +
         rowHTML +
         "<td>" +
         "<button type='button'" +
             "onclick='productDelete(this);' " +
             "class='btn btn-default'>" +
             "<span class='glyphicon glyphicon-remove' />" +
+            "</button" +
             "</td>" +
-         "</tr>"
-    );
+         "</tr>";
 }
 
 function CheckForTBody() {
@@ -51,12 +65,14 @@ $(document).ready(function () {
 
 function addProduct() {
     $("#productPanel").show();
-    $("#updateButton").hide();
+    $("#updateButton").text("Save");
+    $("#addButton").hide();
 }
 
 function cancelUpdate() {
+    ClearForm();
     $("#productPanel").hide();
-    $("#updateButton").show();
+    $("#addButton").show();
 }
 
 function ClearForm() {
@@ -66,6 +82,33 @@ function ClearForm() {
 }
 
 function productUpdate() {
+    if ($("#updateButton").text() == "Update") {
+        productUpdateInTable();
+    }
+    else {
+        productAddToTable();
+    }
+
+    ClearForm();
+
+    cancelUpdate();
+}
+
+function productUpdateInTable() {
+    $(_productRow).after(productBuildTableRow(
+        "<td>" + $("#productname").val() + "</td>" +
+        "<td>" + $("#introdate").val() + "</td>" +
+        "<td>" + $("#url").val() + "</td>"
+    ));
+
+    $(_productRow).remove();
+
+    ClearForm();
+
+    $("#updateButton").text("Save");
+}
+
+function productAddToTable() {
     CheckForTBody();
 
     AppendProductToTable(
@@ -73,12 +116,27 @@ function productUpdate() {
         "<td>" + $("#introdate").val() + "</td>" +
         "<td>" + $("#url").val() + "</td>"
     );
-
-    ClearForm();
-
-    cancelUpdate();
 }
+
+
 
 function productDelete(ctl) {
     $(ctl).parents("tr").remove();
+
+    ClearForm();
+    cancelUpdate();
+}
+
+function productDisplay(ctl) {
+    addProduct();
+
+    _productRow = $(ctl).parents("tr");
+    var cols = _productRow.children("td");
+    $("#productname").val($(cols[1]).text());
+    $("#introdate").val($(cols[2]).text());
+    $("#url").val($(cols[3]).text());
+
+    // change update button text
+    $("#updateButton").text("Update");
+
 }
